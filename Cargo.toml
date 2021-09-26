@@ -1,0 +1,6 @@
+[workspace]
+members = [
+	"build_cfg_macros",
+	"build_cfg",
+	"tests"
+]

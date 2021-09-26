@@ -1,0 +1,11 @@
+[package]
+name = "build_cfg_shared"
+version = "0.1.0"
+edition = "2018"
+authors = ["William Venner <william@venner.io>"]
+license = "MIT"
+repository = "https://github.com/WilliamVenner/build_cfg"
+
+[dependencies]
+derive_more = "0"
+parking_lot = { version = "0", default-features = false }
