@@ -28,7 +28,7 @@ pub mod __private {
 			.for_each(|(key, val)| {
 				key.lookup_mut(&mut cfg).put(val);
 			});
-	
+
 		if !found {
 			panic!("Not in a Cargo/build script environment.");
 		}
