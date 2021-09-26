@@ -6,3 +6,6 @@ publish = false
 
 [dependencies]
 build_cfg = { path = "../build_cfg" }
+
+[build-dependencies]
+build_cfg = { path = "../build_cfg" }

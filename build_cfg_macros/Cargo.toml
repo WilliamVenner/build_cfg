@@ -5,6 +5,7 @@ edition = "2018"
 authors = ["William Venner <william@venner.io>"]
 license = "MIT"
 repository = "https://github.com/WilliamVenner/build_cfg"
+description = "Proc macros for build_cfg"
 
 [lib]
 proc-macro = true

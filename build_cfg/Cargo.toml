@@ -7,7 +7,7 @@ license = "MIT"
 repository = "https://github.com/WilliamVenner/build_cfg"
 description = "Evaluate cfg() directives in build scripts"
 categories = ["development-tools", "development-tools::ffi", "development-tools::build-utils"]
-keywords = ["cfg", "build", "build.rs", "script", "macro"]
+keywords = ["cfg", "build", "script", "macro"]
 
 [dependencies.build_cfg_shared]
 version = "0.1.0"
