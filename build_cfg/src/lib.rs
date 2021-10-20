@@ -1,6 +1,8 @@
+#![doc = include_str!("../../README.md")]
+
 pub use build_cfg_macros::*;
 
-/// # Do not touch!
+#[doc(hidden)]
 pub mod __private {
 	pub use build_cfg_shared::*;
 

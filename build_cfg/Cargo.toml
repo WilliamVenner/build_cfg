@@ -1,6 +1,6 @@
 [package]
 name = "build_cfg"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2018"
 authors = ["William Venner <william@venner.io>"]
 license = "MIT"
@@ -10,9 +10,9 @@ categories = ["development-tools", "development-tools::ffi", "development-tools:
 keywords = ["cfg", "build", "script", "macro"]
 
 [dependencies.build_cfg_shared]
-version = "0.1.0"
 path = "../build_cfg_shared"
+version = "1.0.0"
 
 [dependencies.build_cfg_macros]
-version = "0.1.0"
 path = "../build_cfg_macros"
+version = "1.0.0"
