@@ -62,11 +62,12 @@ pub struct EnvCfg {
 	pub target_vendor: Option<CfgScalar>,
 	pub target_has_atomic: CfgSet,
 	pub target_feature: CfgSet,
+	pub feature: CfgSet
 }
 
 macro_rules! cfg_key {
 	{ $($variant:ident = $val:ident),* } => {
-		#[derive(Clone, Copy, Debug)]
+		#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 		pub enum CfgKey {
 			$($variant),*
 		}
@@ -101,7 +102,8 @@ cfg_key! {
 	TargetEnv = target_env,
 	TargetVendor = target_vendor,
 	TargetHasAtomic = target_has_atomic,
-	TargetFeature = target_feature
+	TargetFeature = target_feature,
+	Feature = feature
 }
 
 #[derive(Clone, Copy, Debug)]

@@ -9,28 +9,22 @@ pub mod __private {
 	use std::ffi::OsString;
 
 	pub fn populate_cfg(vars_os: impl Iterator<Item = (OsString, OsString)>) {
-		let mut found = false;
 		let mut cfg = EnvCfg::default();
 
-		vars_os
-			.filter_map(|(key, val)| {
-				if val.is_empty() {
-					None
-				} else {
-					key.to_string_lossy()
-						.strip_prefix("CARGO_CFG_")
-						.map(|key| key.to_ascii_lowercase())
-						.and_then(|key| CfgKey::from_str(key))
-						.map(|key| {
-							found = true;
-							(key, val.to_string_lossy().into_owned())
-						})
+		let mut found = false;
+		for (key, val) in vars_os {
+			let (key, val) = (key.to_string_lossy(), val.to_string_lossy());
+			if let Some(key) = key.strip_prefix("CARGO_CFG_") {
+				let key = key.to_ascii_lowercase();
+				if let Some(key) = CfgKey::from_str(key) {
+					key.lookup_mut(&mut cfg).put(val.into_owned());
+					found = true;
 				}
-			})
-			.for_each(|(key, val)| {
-				key.lookup_mut(&mut cfg).put(val);
-			});
-
+			} else if let Some(feature) = key.strip_prefix("CARGO_FEATURE_") {
+				cfg.feature.insert(feature.to_ascii_lowercase());
+				found = true;
+			}
+		}
 		if !found {
 			panic!("Not in a Cargo/build script environment.");
 		}

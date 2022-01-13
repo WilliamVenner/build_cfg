@@ -109,10 +109,13 @@ pub fn build_cfg(cfg: TokenStream) -> TokenStream {
 					Some(key) => key,
 					None => panic!("Unknown cfg directive: `{}`", key)
 				};
-				let val = match nv.lit {
+				let mut val = match nv.lit {
 					syn::Lit::Str(str) => str.value(),
 					_ => panic!("literal in `cfg` predicate value must be a string")
 				};
+				if key == CfgKey::Feature {
+					val = val.replace("-", "_");
+				}
 				write!(output, "::build_cfg::__private::CfgPredicate::Directive(::build_cfg::__private::CfgDirective(::build_cfg::__private::CfgKey::{:?},{:?}))", key, val).ok();
 			},
 		}
